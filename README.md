@@ -59,7 +59,7 @@ Jump into the world of AI agents with this fun and friendly introduction! The Jo
 
 **Setup:**
 - Navigate to `src/Demo001_JokerAgentDemo/C#/`
-- Configure your Azure OpenAI credentials in `.env` file
+- Ensure you have ran the `setup\setup.ps1` to configure your `user-secrets`
 - Run `dotnet run` or press F5 in Visual Studio
 
 **Try these prompts:**
@@ -87,7 +87,7 @@ Discover the power of agent tools! This demo shows how to create custom plugins 
 
 **Setup:**
 - Navigate to `src/Demo002_LightPluginDemo/C#/`
-- Configure your Azure OpenAI credentials in `.env` file
+- Ensure you have ran the `setup\setup.ps1` to configure your `user-secrets`
 - Run `dotnet run` or press F5 in Visual Studio
 
 **Try these commands:**
@@ -116,7 +116,7 @@ Sometimes agents need human guidance! This demo extends the Light Plugin with hu
 
 **Setup:**
 - Navigate to `src/Demo003_HumanInTheLoopDemo/C#/`
-- Configure your Azure OpenAI credentials in `.env` file
+- Ensure you have ran the `setup\setup.ps1` to configure your `user-secrets`
 - Run `dotnet run` or press F5 in Visual Studio
 
 **Try these interactions:**
@@ -144,7 +144,7 @@ Expand your agent's reach! This demo demonstrates how to connect your agent to G
 
 **Setup:**
 - Navigate to `src/Demo004_MCPGitHubDemo/C#/`
-- Configure your Azure OpenAI credentials and GitHub Personal Access Token in `.env` file
+- Ensure you have ran the `setup\setup.ps1` to configure your `user-secrets`
 - Ensure Docker or Podman is installed and running
 - Run `dotnet run` or press F5 in Visual Studio
 
@@ -173,7 +173,7 @@ Make your agents observable! This demo shows how to add comprehensive telemetry 
 
 **Setup:**
 - Navigate to `src/Demo005_AgentObservabilityDemo/C#/`
-- Configure your Azure OpenAI credentials in `.env` file
+- Ensure you have ran the `setup\setup.ps1` to configure your `user-secrets`
 - Run `dotnet run` or press F5 in Visual Studio
 - Observe telemetry output in the console
 
@@ -202,7 +202,7 @@ Chain agents for powerful workflows! This demo creates a sequential translation 
 
 **Setup:**
 - Navigate to `src/Demo006_WorkflowSequentialDemo/C#/`
-- Configure your Azure OpenAI credentials in `.env` file
+- Ensure you have ran the `setup\setup.ps1` to configure your `user-secrets`
 - Run `dotnet run` or press F5 in Visual Studio
 
 **Watch as your text gets translated:**
@@ -230,7 +230,7 @@ Harness the power of parallel processing! This demo shows how to run multiple ag
 
 **Setup:**
 - Navigate to `src/Demo007_WorkflowConcurrentDemo/C#/`
-- Configure your Azure OpenAI credentials in `.env` file
+- Ensure you have ran the `setup\setup.ps1` to configure your `user-secrets`
 - Run `dotnet run` or press F5 in Visual Studio
 
 **Try questions like:**
@@ -258,7 +258,7 @@ Create intelligent agent teams! This demo implements a sophisticated handoff sys
 
 **Setup:**
 - Navigate to `src/Demo008_WorkflowHandoffDemo/C#/`
-- Configure your Azure OpenAI credentials in `.env` file
+- Ensure you have ran the `setup\setup.ps1` to configure your `user-secrets`
 - Run `dotnet run` or press F5 in Visual Studio
 
 **Try different types of questions:**
@@ -288,23 +288,25 @@ Create intelligent agent teams! This demo implements a sophisticated handoff sys
 4. **Azure OpenAI Setup:**
    - Create an Azure OpenAI resource in the Azure portal
    - Deploy a GPT-4 model (recommended: gpt-4o)
-   - Note your endpoint and API key
+   - Note your endpoint
 
 5. **Environment Configuration:**
-   - Create a `.env` file in each demo's C# folder
-   - Add your Azure OpenAI credentials:
+   - Create your `user-secrets` settings for each project
+   - Add your `config.ps1` file to the setup folder based on the `config.ps1.sample` file:
      ```
-     AZURE_OPENAI_ENDPOINT=https://your-resource.openai.azure.com/
-     AZURE_OPENAI_KEY=your-api-key-here
-     OPENAI_MODEL=gpt-4o-demo
+      $AZURE_OPENAI_ENDPOINT = "https://your-azure-openai-endpoint.openai.azure.com/"
+      $AZURE_OPENAI_MODEL_ID = "gpt-4o"
+      $GITHUB_PERSONAL_ACCESS_TOKEN = "{YOUR_GITHUB_PAT}"
      ```
+   - Now run the `setup.ps1` script and it will initialize and set the `user-secrets` on each project.
+   - You can update the `config.ps1` any time and re-run the `setup.ps1` file as many times as you want.
 
 ### Additional Requirements for Specific Demos
 
 **Demo 4 (MCP GitHub):**
 - Install Docker or Podman for containerized MCP server
 - Generate a GitHub Personal Access Token
-- Add to `.env` file: `GITHUB_PERSONAL_ACCESS_TOKEN=your-token-here`
+- Add to `setup\config.ps1` file: `$GITHUB_PERSONAL_ACCESS_TOKEN=your-token-here`
 
 ### Running the Demos
 
