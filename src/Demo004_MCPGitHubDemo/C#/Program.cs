@@ -1,26 +1,20 @@
 ﻿using System.ClientModel;
 using Microsoft.Agents.AI;
-using DotNetEnv;
 using Azure.AI.OpenAI;
 using Microsoft.Extensions.AI;
 using OpenAI;
 using OpenAI.Chat;
 using ModelContextProtocol.Client;
+using Azure.Identity;
+using Microsoft.Extensions.Configuration;
 
-// Load environment variables from .env file
-var root = Directory.GetCurrentDirectory();
-var dotenv = Path.Combine(root, ".env");
-Env.Load(dotenv);
-
+// Load user secrets from the project
+var config = new ConfigurationBuilder().Build();
 
 // Populate values from your OpenAI deployment
-var modelId = Environment.GetEnvironmentVariable("OPENAI_MODEL") ?? "gpt-4o-demo";
-var endpoint = Environment.GetEnvironmentVariable("AZURE_OPENAI_ENDPOINT") ?? 
-    throw new ArgumentNullException("AZURE_OPENAI_ENDPOINT environment variable is not set");
-var apiKey = Environment.GetEnvironmentVariable("AZURE_OPENAI_KEY") ??
-    throw new ArgumentNullException("AZURE_OPENAI_KEY environment variable is not set");
-var gitHubToken = Environment.GetEnvironmentVariable("GITHUB_PERSONAL_ACCESS_TOKEN") ??
-    throw new ArgumentNullException("GITHUB_PERSONAL_ACCESS_TOKEN environment variable is not set");
+var modelId = config["AzureOpenAI:ModelId"] ?? "gpt-4o-demo";
+var endpoint = config["AzureOpenAI:Endpoint"] ?? "https://{your-custom-endpoint}.openai.azure.com/";
+var gitHubToken = config["Github:PersonalAccessToken"] ?? "{your-github-access-token}";
 
 
 
@@ -39,7 +33,7 @@ var mcpTools = await mcpClient.ListToolsAsync().ConfigureAwait(false);
 
 AIAgent agent = new AzureOpenAIClient(
     new Uri(endpoint),
-    new ApiKeyCredential(apiKey))
+    new DefaultAzureCredential())
      .GetChatClient(modelId)
      .CreateAIAgent(
         instructions: "You answer questions related to GitHub repositories only.",

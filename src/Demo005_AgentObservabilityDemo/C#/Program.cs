@@ -1,6 +1,5 @@
 ﻿using System.ClientModel;
 using Microsoft.Agents.AI;
-using DotNetEnv;
 using Azure.AI.OpenAI;
 using System;
 using Azure.Identity;
@@ -9,19 +8,16 @@ using OpenAI;
 using OpenAI.Chat;
 using OpenTelemetry;
 using OpenTelemetry.Trace;
+using Microsoft.Extensions.Configuration;
 
-// Load environment variables from .env file
-var root = Directory.GetCurrentDirectory();
-var dotenv = Path.Combine(root, ".env");
-Env.Load(dotenv);
-
+// Load user secrets from the project
+var config = new ConfigurationBuilder()
+.AddUserSecrets<Program>()
+.Build();
 
 // Populate values from your OpenAI deployment
-var modelId = Environment.GetEnvironmentVariable("OPENAI_MODEL") ?? "gpt-4o-demo";
-var endpoint = Environment.GetEnvironmentVariable("AZURE_OPENAI_ENDPOINT") ?? 
-    throw new ArgumentNullException("AZURE_OPENAI_ENDPOINT environment variable is not set");
-var apiKey = Environment.GetEnvironmentVariable("AZURE_OPENAI_KEY") ?? 
-    throw new ArgumentNullException("AZURE_OPENAI_KEY environment variable is not set");
+var modelId = config["AzureOpenAI:ModelId"] ?? "gpt-4o-demo";
+var endpoint = config["AzureOpenAI:Endpoint"] ?? "https://{your-custom-endpoint}.openai.azure.com/";
 
 // Create a TracerProvider that exports to the console
 using var tracerProvider = Sdk.CreateTracerProviderBuilder()
@@ -29,7 +25,9 @@ using var tracerProvider = Sdk.CreateTracerProviderBuilder()
     .AddConsoleExporter()
     .Build();
 
-AIAgent agent = new AzureOpenAIClient(new Uri(endpoint), new ApiKeyCredential(apiKey))
+AIAgent agent = new AzureOpenAIClient(
+    new Uri(endpoint),
+    new DefaultAzureCredential())
     .GetChatClient(modelId)
     .CreateAIAgent(instructions: "You are good at telling jokes.", name: "Joker")
     .AsBuilder()

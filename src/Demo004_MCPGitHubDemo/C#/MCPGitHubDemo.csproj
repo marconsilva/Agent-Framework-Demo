@@ -5,20 +5,17 @@
     <TargetFramework>net9.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
+    <UserSecretsId>d7ec4fbe-97bc-4327-a98f-e5e410943e48</UserSecretsId>
   </PropertyGroup>
 
   
   <ItemGroup>
     <PackageReference Include="Azure.AI.OpenAI" Version="2.1.0" />
     <PackageReference Include="Azure.Identity" Version="1.17.0" />
-    <PackageReference Include="DotNetEnv" Version="3.1.1" />
     <PackageReference Include="Microsoft.Agents.AI.OpenAI" Version="1.0.0-preview.251009.1" />
     <PackageReference Include="ModelContextProtocol" Version="0.4.0-preview.2" />
     <PackageReference Include="System.Net.ServerSentEvents" VersionOverride="10.0.0-preview.4.25258.110" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Include=".env" CopyToOutputDirectory="PreserveNewest" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.UserSecrets" Version="9.0.10"/>
   </ItemGroup>
 
 </Project>

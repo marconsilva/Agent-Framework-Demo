@@ -5,6 +5,7 @@
     <TargetFramework>net9.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
+    <UserSecretsId>f17c98db-d40a-42c2-b847-3c3567e3d73a</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup> 
@@ -12,9 +13,6 @@
     <PackageReference Include="Azure.Identity" Version="1.17.0" />
     <PackageReference Include="DotNetEnv" Version="3.1.1" />
     <PackageReference Include="Microsoft.Agents.AI.OpenAI" Version="1.0.0-preview.251009.1" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Include=".env" CopyToOutputDirectory="PreserveNewest" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.UserSecrets" Version="9.0.10" />
   </ItemGroup>
 </Project>

@@ -7,25 +7,21 @@ using Microsoft.Agents.AI.Workflows;
 using Microsoft.Extensions.AI;
 using Microsoft.Agents.AI;
 using System.ClientModel;
-using DotNetEnv;
+using Microsoft.Extensions.Configuration;
 
-// Load environment variables from .env file
-var root = Directory.GetCurrentDirectory();
-var dotenv = Path.Combine(root, ".env");
-Env.Load(dotenv);
-
+// Load user secrets from the project
+var config = new ConfigurationBuilder()
+.AddUserSecrets<Program>()
+.Build();
 
 // Populate values from your OpenAI deployment
-var modelId = Environment.GetEnvironmentVariable("OPENAI_MODEL") ?? "gpt-4o-demo";
-var endpoint = Environment.GetEnvironmentVariable("AZURE_OPENAI_ENDPOINT") ?? 
-    throw new ArgumentNullException("AZURE_OPENAI_ENDPOINT environment variable is not set");
-var apiKey = Environment.GetEnvironmentVariable("AZURE_OPENAI_KEY") ?? 
-    throw new ArgumentNullException("AZURE_OPENAI_KEY environment variable is not set");
+var modelId = config["AzureOpenAI:ModelId"] ?? "gpt-4o-demo";
+var endpoint = config["AzureOpenAI:Endpoint"] ?? "https://{your-custom-endpoint}.openai.azure.com/";
 
 // Set up the Azure OpenAI client
 var chatClient = new AzureOpenAIClient(
     new Uri(endpoint),
-    new ApiKeyCredential(apiKey))
+    new DefaultAzureCredential())
     .GetChatClient(modelId)
     .AsIChatClient();
 
