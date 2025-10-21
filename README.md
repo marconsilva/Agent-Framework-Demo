@@ -1,6 +1,6 @@
 # Microsoft Agent Framework Demo Project 🌟
 
-Welcome to the **Microsoft Agent Framework Demo Project**! This repository contains a collection of 8 comprehensive demos showcasing the powerful capabilities of Microsoft's newly released Agent Framework. Each demo is designed to highlight specific features and use cases, providing a hands-on experience for developers exploring the world of AI agents. 🚀
+Welcome to the **Microsoft Agent Framework Demo Project**! This repository contains a collection of 10 comprehensive demos showcasing the powerful capabilities of Microsoft's newly released Agent Framework. Each demo is designed to highlight specific features and use cases, providing a hands-on experience for developers exploring the world of AI agents. 🚀
 
 ---
 
@@ -16,6 +16,8 @@ Welcome to the **Microsoft Agent Framework Demo Project**! This repository conta
    - [Demo 6: Sequential Workflows ⚡](#demo-6-sequential-workflows-)
    - [Demo 7: Concurrent Workflows 🔄](#demo-7-concurrent-workflows-)
    - [Demo 8: Workflow Handoffs 🤝](#demo-8-workflow-handoffs-)
+   - [Demo 9: Development UI (Python) 🐍](#demo-9-development-ui-python-)
+   - [Demo 10: DevUI Workflow Demo (Python) 🔀](#demo-10-devui-workflow-demo-python-)
 3. [Setup Instructions](#setup-instructions)
 4. [Contributing](#contributing)
 5. [License](#license)
@@ -24,7 +26,7 @@ Welcome to the **Microsoft Agent Framework Demo Project**! This repository conta
 
 ## Project Overview 📝
 
-The Microsoft Agent Framework Demo Project showcases the powerful capabilities of Microsoft's newly released Agent Framework through 8 comprehensive demos. Each demo explores different aspects of building intelligent agents, from basic conversational AI to complex multi-agent workflows and integrations.
+The Microsoft Agent Framework Demo Project showcases the powerful capabilities of Microsoft's newly released Agent Framework through 10 comprehensive demos. Each demo explores different aspects of building intelligent agents, from basic conversational AI to complex multi-agent workflows and integrations.
 
 🎯 **What you'll learn:**
 - Creating and configuring AI agents with custom instructions
@@ -268,6 +270,89 @@ Create intelligent agent teams! This demo implements a sophisticated handoff sys
 
 ---
 
+### Demo 9: Development UI (Python) 🐍
+
+**What you'll learn:**
+- Using Agent Framework with Python
+- Setting up a web-based development UI for testing agents
+- Creating simple workflows with executors
+- Working with Python environment management using UV
+
+**Description:**
+Explore the Agent Framework using Python! This demo demonstrates how to use the Agent Framework DevUI to create and test agents with a web-based interface. It includes weather and general-purpose agents, plus a simple text transformation workflow that converts text to uppercase and adds exclamation marks.
+
+**Key Features:**
+- 🐍 Python implementation of Agent Framework
+- 🌐 Web-based development UI
+- 🌤️ Weather assistant with tool functions
+- 💬 General conversational agent
+- ⚡ Simple text transformation workflow
+- 🔧 Easy agent testing interface
+
+**Setup:**
+- Navigate to `src/Demo009_DevUI/python/`
+- Install UV package manager:
+   - Windows: `powershell -ExecutionPolicy ByPass -c "irm https://astral.sh/uv/install.ps1 | iex"`
+   - macOS/Linux (curl): `curl -fsSL https://astral.sh/uv/install.sh | bash`
+   - macOS/Linux (wget): `wget -qO- https://astral.sh/uv/install.sh | bash`
+   - using pip: `pip install uv`
+- Copy `.env.sample` to `.env` and configure your Azure OpenAI settings
+- Install dependencies: `uv sync`
+- Run the demo: `uv run --env-file .env python main.py`
+- Access the UI at http://localhost:8090
+
+**Try these interactions:**
+- Weather queries: "What's the weather in Seattle?"
+- Time queries: "What time is it in Lisbon?"
+- Test the workflow with any text input
+- Explore the web interface for easy agent testing
+
+---
+
+### Demo 10: DevUI Workflow Demo (Python) 🔀
+
+**What you'll learn:**
+- Building complex branching workflows in Python
+- Implementing conditional routing based on agent responses
+- Creating content review workflows with quality control
+- Using structured outputs for decision making
+
+**Description:**
+Master advanced workflow patterns with Python! This demo showcases a sophisticated content review workflow where a writer creates content, a reviewer evaluates it, and based on the quality score, the content either goes directly to publication or through an editing process first. Both paths converge at a final summarizer.
+
+**Key Features:**
+- 🔀 Conditional workflow branching
+- 📝 Multi-agent content creation pipeline
+- ⚖️ Quality-based routing decisions
+- 📊 Structured output evaluation
+- 🔄 Workflow path convergence
+- 📋 Automated content review process
+
+**Setup:**
+- Navigate to `src/Demo010_DevUI_WorkflowDemo/python/`
+- Install UV package manager:
+   - Windows: `powershell -ExecutionPolicy ByPass -c "irm https://astral.sh/uv/install.ps1 | iex"`
+   - macOS/Linux (curl): `curl -fsSL https://astral.sh/uv/install.sh | bash`
+   - macOS/Linux (wget): `wget -qO- https://astral.sh/uv/install.sh | bash`
+   - using pip: `pip install uv`
+- Copy `.env.sample` to `.env` and configure your Azure OpenAI settings
+- Install dependencies: `uv sync`
+- Run the demo: `uv run --env-file .env python main.py`
+- Access the UI at http://localhost:8093
+
+**Workflow Paths:**
+- **High Quality (score ≥ 80):** Writer → Reviewer → Publisher → Summarizer
+- **Low Quality (score < 80):** Writer → Reviewer → Editor → Publisher → Summarizer
+- Both paths converge at the Summarizer for final reporting
+
+**Try content creation prompts:**
+- "Write an article about renewable energy"
+- "Create a guide for Python beginners"
+- "Write a product description for a smart watch"
+- Watch how different quality scores route through different workflow paths!
+
+---
+
 ## Setup Instructions 🛠️
 
 ### Prerequisites
@@ -278,12 +363,16 @@ Create intelligent agent teams! This demo implements a sophisticated handoff sys
    cd Agent-Framework-Demo
    ```
 
-2. **Install .NET 9.0 SDK:**
+2. **For C# Demos - Install .NET 9.0 SDK:**
    - Download and install from [https://dotnet.microsoft.com/download](https://dotnet.microsoft.com/download)
 
-3. **Install Visual Studio or VS Code:**
+3. **For Python Demos - Install Python and UV:**
+   - **Python 3.12+:** Download from [https://python.org](https://python.org)
+   - **UV Package Manager:** Install with `pip install uv`
+
+4. **Install Visual Studio or VS Code:**
    - **Visual Studio:** Download from [https://visualstudio.microsoft.com/](https://visualstudio.microsoft.com/)
-   - **VS Code:** Download from [https://code.visualstudio.com/](https://code.visualstudio.com/) with C# extension
+   - **VS Code:** Download from [https://code.visualstudio.com/](https://code.visualstudio.com/) with C# and Python extensions
 
 4. **Azure OpenAI Setup:**
    - Create an Azure OpenAI resource in the Azure portal
@@ -291,6 +380,8 @@ Create intelligent agent teams! This demo implements a sophisticated handoff sys
    - Note your endpoint
 
 5. **Environment Configuration:**
+
+   **For C# Demos:**
    - Create your `user-secrets` settings for each project
    - Add your `config.ps1` file to the setup folder based on the `config.ps1.sample` file:
      ```
@@ -301,6 +392,17 @@ Create intelligent agent teams! This demo implements a sophisticated handoff sys
    - Now run the `setup.ps1` script and it will initialize and set the `user-secrets` on each project.
    - You can update the `config.ps1` any time and re-run the `setup.ps1` file as many times as you want.
 
+   **For Python Demos:**
+   - Navigate to each Python demo folder (`Demo009_DevUI/python/` or `Demo010_DevUI_WorkflowDemo/python/`)
+   - Copy `.env.sample` to `.env` in each folder
+   - Update the `.env` file with your Azure OpenAI settings:
+     ```
+     AZURE_OPENAI_ENDPOINT="https://your-azure-openai-endpoint.openai.azure.com/"
+     AZURE_OPENAI_CHAT_DEPLOYMENT_NAME="gpt-4o-demo"
+     AZURE_OPENAI_API_VERSION="2025-01-01-preview"
+     AZURE_OPENAI_API_KEY="your_azure_openai_api_key_here"
+     ```
+
 ### Additional Requirements for Specific Demos
 
 **Demo 4 (MCP GitHub):**
@@ -310,10 +412,18 @@ Create intelligent agent teams! This demo implements a sophisticated handoff sys
 
 ### Running the Demos
 
+**C# Demos (Demos 1-8):**
 1. Navigate to any demo folder: `src/Demo00X_DemoName/C#/`
 2. Restore packages: `dotnet restore`
 3. Run the demo: `dotnet run` or press F5 in Visual Studio
 4. Follow the on-screen prompts and enjoy exploring! 🎉
+
+**Python Demos (Demos 9-10):**
+1. Navigate to the Python demo folder: `src/Demo00X_DemoName/python/`
+2. Install dependencies: `uv sync`
+3. Run the demo: `uv run --env-file .env python main.py`
+4. Access the web UI at the provided localhost URL
+5. Interact with agents and workflows through the browser interface! 🐍
 
 ---
 

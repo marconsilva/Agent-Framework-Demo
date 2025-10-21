@@ -1,0 +1,13 @@
+[project]
+name = "DevUI_WorkflowDemo"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "agent-framework-azure-ai>=1.0.0b251016",
+    "agent-framework-devui>=1.0.0b251016",
+    "azure-ai-agents>=1.2.0b5",
+    "azure-identity>=1.25.1",
+    "python-dotenv>=1.1.1",
+    ]
