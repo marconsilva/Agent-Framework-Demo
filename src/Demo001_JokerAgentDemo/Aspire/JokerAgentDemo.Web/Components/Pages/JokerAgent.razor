@@ -1,0 +1,70 @@
+﻿@page "/"
+@rendermode InteractiveServer
+
+<PageTitle>Joker Agent Chat</PageTitle>
+
+<h3>Joker Agent Chat</h3>
+
+<p>This is a chat interface for interacting with the Joker AI agent. You can ask it to tell a joke and he will respond with a joke.</p>
+
+<div>
+	<ul>
+
+		<li><button type="button" @onclick="OnPirateJoke">Joke: Tell me a joke about a pirate.</button></li>
+		<li><button type="button" @onclick="OnAIJoke">Joke: Tell me a joke about AI.</button></li>
+		<li><button type="button" @onclick="OnPortugalJoke">Joke: Tell me a joke about Portugal.</button></li>
+	</ul>
+</div>
+<br />
+<EditForm Model="@userInput" OnValidSubmit="HandleValidSubmit" FormName="JokerChatForm">
+ <InputTextArea @bind-Value="userInput.Message" Placeholder="Type your message here..." Rows="4" Style="width:100%;" />
+ <br />
+ <button type="submit">Send</button>
+</EditForm>
+
+@if (!string.IsNullOrEmpty(jokeResponse))
+{
+ <div class="alert alert-success" style="margin-top:1em;">
+ <b>Joker says:</b> @jokeResponse
+ </div>
+}
+
+@code {
+ private class UserInputModel
+ {
+ public string Message { get; set; }
+ }
+
+ private UserInputModel userInput = new();
+ private string jokeResponse;
+
+ private async Task HandleValidSubmit()
+ {
+ await SubmitPromptAsync(userInput.Message);
+ }
+
+ private async Task SubmitPromptAsync(string prompt)
+ {
+ if (string.IsNullOrWhiteSpace(prompt)) return;
+ jokeResponse = "Loading...";
+ StateHasChanged();
+ try
+ {
+ jokeResponse = await JokerAgentController.GetJokeAsync(prompt);
+ }
+ catch (Exception ex)
+ {
+ jokeResponse = $"Error: {ex.Message}";
+ }
+ StateHasChanged();
+ }
+
+	private void OnPirateJoke() => userInput.Message = "Tell me a joke about a pirate.";
+	private void OnAIJoke() => userInput.Message = "Tell me a joke about AI.";
+	private void OnPortugalJoke() => userInput.Message = "Tell me a joke about Portugal.";
+
+ [Inject]
+ private JokerAgentDemo.Web.Components.Controllers.JokerAgentContoller JokerAgentController { get; set; }
+}
+
+

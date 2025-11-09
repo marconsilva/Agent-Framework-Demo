@@ -1,0 +1,60 @@
+﻿Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.8.0.0
+MinimumVisualStudioVersion = 17.8.0.0
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Agent-Framework-Demo.AppHost", "Agent-Framework-Demo.AppHost\Agent-Framework-Demo.AppHost.csproj", "{4E28778B-A055-4A6E-AE8A-0BED45E5F678}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Agent-Framework-Demo.ServiceDefaults", "Agent-Framework-Demo.ServiceDefaults\Agent-Framework-Demo.ServiceDefaults.csproj", "{ADD6BF17-304C-4750-8EFE-335815A2FB6D}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Agent-Framework-Demo.ApiService", "Agent-Framework-Demo.ApiService\Agent-Framework-Demo.ApiService.csproj", "{7C314605-4810-4340-B21B-692F55FC080F}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Agent-Framework-Demo.Web", "Agent-Framework-Demo.Web\Agent-Framework-Demo.Web.csproj", "{FD165BFE-932B-42F3-A807-39B127EE2AF0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JokerAgentDemo.Web", "..\Demo001_JokerAgentDemo\Aspire\JokerAgentDemo.Web\JokerAgentDemo.Web.csproj", "{FD165BFE-932B-42F3-A807-39B127EE2AF1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LightPluginDemo.Web", "..\Demo002_LightPluginDemo\Aspire\LightPluginDemo.Web\LightPluginDemo.Web.csproj", "{FD165BFE-932B-42F3-A807-39B127EE2AF2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HumanInTheLoopDemo.Web", "..\Demo003_HumanInTheLoopDemo\Aspire\HumanInTheLoopDemo.Web\HumanInTheLoopDemo.Web.csproj", "{FD165BFE-932B-42F3-A807-39B127EE2AF3}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{4E28778B-A055-4A6E-AE8A-0BED45E5F678}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4E28778B-A055-4A6E-AE8A-0BED45E5F678}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4E28778B-A055-4A6E-AE8A-0BED45E5F678}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4E28778B-A055-4A6E-AE8A-0BED45E5F678}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ADD6BF17-304C-4750-8EFE-335815A2FB6D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ADD6BF17-304C-4750-8EFE-335815A2FB6D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ADD6BF17-304C-4750-8EFE-335815A2FB6D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ADD6BF17-304C-4750-8EFE-335815A2FB6D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7C314605-4810-4340-B21B-692F55FC080F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7C314605-4810-4340-B21B-692F55FC080F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7C314605-4810-4340-B21B-692F55FC080F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7C314605-4810-4340-B21B-692F55FC080F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FD165BFE-932B-42F3-A807-39B127EE2AF0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FD165BFE-932B-42F3-A807-39B127EE2AF0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FD165BFE-932B-42F3-A807-39B127EE2AF0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FD165BFE-932B-42F3-A807-39B127EE2AF0}.Release|Any CPU.Build.0 = Release|Any CPU
+		
+		{FD165BFE-932B-42F3-A807-39B127EE2AF1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FD165BFE-932B-42F3-A807-39B127EE2AF1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FD165BFE-932B-42F3-A807-39B127EE2AF1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FD165BFE-932B-42F3-A807-39B127EE2AF1}.Release|Any CPU.Build.0 = Release|Any CPU
+		
+		{FD165BFE-932B-42F3-A807-39B127EE2AF2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FD165BFE-932B-42F3-A807-39B127EE2AF2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FD165BFE-932B-42F3-A807-39B127EE2AF2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FD165BFE-932B-42F3-A807-39B127EE2AF2}.Release|Any CPU.Build.0 = Release|Any CPU
+		
+		{FD165BFE-932B-42F3-A807-39B127EE2AF3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FD165BFE-932B-42F3-A807-39B127EE2AF3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FD165BFE-932B-42F3-A807-39B127EE2AF3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FD165BFE-932B-42F3-A807-39B127EE2AF3}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {61F04B3C-9DD9-4F8F-9144-F6FCB7580083}
+	EndGlobalSection
+EndGlobal
