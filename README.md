@@ -19,8 +19,9 @@ Welcome to the **Microsoft Agent Framework Demo Project**! This repository conta
    - [Demo 9: Development UI (Python) 🐍](#demo-9-development-ui-python-)
    - [Demo 10: DevUI Workflow Demo (Python) 🔀](#demo-10-devui-workflow-demo-python-)
 3. [Setup Instructions](#setup-instructions)
-4. [Contributing](#contributing)
-5. [License](#license)
+4. [Running with .NET Aspire](#running-with-net-aspire)
+5. [Contributing](#contributing)
+6. [License](#license)
 
 ---
 
@@ -366,20 +367,24 @@ Master advanced workflow patterns with Python! This demo showcases a sophisticat
 2. **For C# Demos - Install .NET 9.0 SDK:**
    - Download and install from [https://dotnet.microsoft.com/download](https://dotnet.microsoft.com/download)
 
-3. **For Python Demos - Install Python and UV:**
+3. **For .NET Aspire (Recommended for C# Demos):**
+   - Install .NET Aspire workload: `dotnet workload install aspire`
+   - This enables running multiple demos simultaneously with a unified dashboard
+
+4. **For Python Demos - Install Python and UV:**
    - **Python 3.12+:** Download from [https://python.org](https://python.org)
    - **UV Package Manager:** Install with `pip install uv`
 
-4. **Install Visual Studio or VS Code:**
+5. **Install Visual Studio or VS Code:**
    - **Visual Studio:** Download from [https://visualstudio.microsoft.com/](https://visualstudio.microsoft.com/)
    - **VS Code:** Download from [https://code.visualstudio.com/](https://code.visualstudio.com/) with C# and Python extensions
 
-4. **Azure OpenAI Setup:**
+6. **Azure OpenAI Setup:**
    - Create an Azure OpenAI resource in the Azure portal
    - Deploy a GPT-4 model (recommended: gpt-4o)
    - Note your endpoint
 
-5. **Environment Configuration:**
+7. **Environment Configuration:**
 
    **For C# Demos:**
    - Create your `user-secrets` settings for each project
@@ -410,7 +415,67 @@ Master advanced workflow patterns with Python! This demo showcases a sophisticat
 - Generate a GitHub Personal Access Token
 - Add to `setup\config.ps1` file: `$GITHUB_PERSONAL_ACCESS_TOKEN=your-token-here`
 
-### Running the Demos
+---
+
+## Running with .NET Aspire 🚀
+
+### What is .NET Aspire?
+
+.NET Aspire provides a unified development experience for running multiple applications simultaneously. For this demo project, Aspire allows you to launch several Agent Framework demos at once and monitor them through a single, elegant dashboard.
+
+### Aspire-Enabled Demos
+
+The following demos have been configured to work with .NET Aspire:
+- ✅ **Demo 1:** Joker Agent 🃏
+- ✅ **Demo 2:** Light Plugin 💡  
+- ✅ **Demo 3:** Human in the Loop 👥
+- ✅ **Demo 6:** Sequential Workflows ⚡
+- ✅ **Demo 7:** Concurrent Workflows 🔄
+
+### Running Multiple Demos with Aspire
+
+**Prerequisites:**
+- Ensure you've completed the setup instructions above
+- Install .NET Aspire workload: `dotnet workload install aspire`
+
+**Steps:**
+
+1. **Navigate to the Aspire solution:**
+   ```powershell
+   cd src/aspire
+   ```
+
+2. **Launch all demos with Aspire:**
+   ```powershell
+   dotnet run --project AgentFramework.AppHost
+   ```
+   
+   Or alternatively:
+   ```powershell
+   aspire run
+   ```
+
+3. **Access the Aspire Dashboard:**
+   - The Aspire dashboard will automatically open in your browser
+   - If not, navigate to the URL displayed in the console (typically `https://localhost:15000`)
+
+4. **Explore Multiple Demos:**
+   - All 5 Aspire-enabled demos will be available in the dashboard
+   - Click on any demo to access its individual interface
+   - Monitor logs, metrics, and traces across all demos from one place
+   - Switch between demos seamlessly without stopping and starting individual projects
+
+### Benefits of Using Aspire
+
+- 🎯 **Unified Dashboard:** Monitor all demos from a single interface
+- 📊 **Observability:** View logs, metrics, and traces across all applications
+- ⚡ **Quick Access:** Jump between different demos instantly
+- 🔍 **Resource Monitoring:** Track CPU, memory, and other resources
+- 🚀 **Developer Experience:** Simplified setup and management
+
+### Individual Demo Execution
+
+If you prefer to run demos individually:
 
 **C# Demos (Demos 1-8):**
 1. Navigate to any demo folder: `src/Demo00X_DemoName/C#/`
