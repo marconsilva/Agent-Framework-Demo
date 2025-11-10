@@ -12,6 +12,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Agent-Framework-Demo.Web", 
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JokerAgentDemo.Web", "..\Demo001_JokerAgentDemo\Aspire\JokerAgentDemo.Web\JokerAgentDemo.Web.csproj", "{FD165BFE-932B-42F3-A807-39B127EE2AF1}"
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LightPluginDemo.Web", "..\Demo002_LightPluginDemo\Aspire\LightPluginDemo.Web\LightPluginDemo.Web.csproj", "{FD165BFE-932B-42F3-A807-39B127EE2AF2}"
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HumanInTheLoopDemo.Web", "..\Demo003_HumanInTheLoopDemo\Aspire\HumanInTheLoopDemo.Web\HumanInTheLoopDemo.Web.csproj", "{FD165BFE-932B-42F3-A807-39B127EE2AF3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WorkflowConcurrentDemo.Web", "..\Demo007_WorkflowConcurrentDemo\Aspire\WorkflowConcurrentDemo.Web\WorkflowConcurrentDemo.Web.csproj", "{FD165BFE-932B-42F3-A807-39B127EE2AF4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WorkflowSequentialDemo.Web", "..\Demo006_WorkflowSequentialDemo\Aspire\WorkflowSequentialDemo.Web\WorkflowSequentialDemo.Web.csproj", "{FD165BFE-932B-42F3-A807-39B127EE2AF45}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -50,6 +52,17 @@ Global
 		{FD165BFE-932B-42F3-A807-39B127EE2AF3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FD165BFE-932B-42F3-A807-39B127EE2AF3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FD165BFE-932B-42F3-A807-39B127EE2AF3}.Release|Any CPU.Build.0 = Release|Any CPU
+		
+		{FD165BFE-932B-42F3-A807-39B127EE2AF4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FD165BFE-932B-42F3-A807-39B127EE2AF4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FD165BFE-932B-42F3-A807-39B127EE2AF4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FD165BFE-932B-42F3-A807-39B127EE2AF4}.Release|Any CPU.Build.0 = Release|Any CPU
+		
+		{FD165BFE-932B-42F3-A807-39B127EE2AF5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FD165BFE-932B-42F3-A807-39B127EE2AF5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FD165BFE-932B-42F3-A807-39B127EE2AF5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FD165BFE-932B-42F3-A807-39B127EE2AF5}.Release|Any CPU.Build.0 = Release|Any CPU
+		
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -23,25 +23,33 @@ builder.AddProject<Projects.JokerAgentDemo_Web>("Demo001-JokerAgentDemo")
     .WithEnvironment("AzureOpenAI:Endpoint", azureOpenAIEndpointParameter)
     .WithEnvironment("AzureOpenAI:ModelId", azureOpenAIModelIdParameter)
     .WithExternalHttpEndpoints()
-    .WithHttpHealthCheck("/health")
-    .WithReference(apiService)
-    .WaitFor(apiService);
+    .WithHttpHealthCheck("/health");
 
 builder.AddProject<Projects.LightPluginDemo_Web>("Demo002-LightPluginDemo")
     .WithEnvironment("AzureOpenAI:Endpoint", azureOpenAIEndpointParameter)
     .WithEnvironment("AzureOpenAI:ModelId", azureOpenAIModelIdParameter)
     .WithExternalHttpEndpoints()
-    .WithHttpHealthCheck("/health")
-    .WithReference(apiService)
-    .WaitFor(apiService);
+    .WithHttpHealthCheck("/health");
 
 
 builder.AddProject<Projects.HumanInTheLoopDemo_Web>("Demo003-HumanInTheLoopDemo")
     .WithEnvironment("AzureOpenAI:Endpoint", azureOpenAIEndpointParameter)
     .WithEnvironment("AzureOpenAI:ModelId", azureOpenAIModelIdParameter)
     .WithExternalHttpEndpoints()
-    .WithHttpHealthCheck("/health")
-    .WithReference(apiService)
-    .WaitFor(apiService);
+    .WithHttpHealthCheck("/health");
+
+
+builder.AddProject<Projects.WorkflowSequentialDemo_Web>("Demo006-WorkflowSequentialDemo")
+    .WithEnvironment("AzureOpenAI:Endpoint", azureOpenAIEndpointParameter)
+    .WithEnvironment("AzureOpenAI:ModelId", azureOpenAIModelIdParameter)
+    .WithExternalHttpEndpoints()
+    .WithHttpHealthCheck("/health");
+
+
+builder.AddProject<Projects.WorkflowConcurrentDemo_Web>("Demo007-WorkflowConcurrentDemo")
+    .WithEnvironment("AzureOpenAI:Endpoint", azureOpenAIEndpointParameter)
+    .WithEnvironment("AzureOpenAI:ModelId", azureOpenAIModelIdParameter)
+    .WithExternalHttpEndpoints()
+    .WithHttpHealthCheck("/health");
 
 builder.Build().Run();

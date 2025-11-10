@@ -1,0 +1,186 @@
+﻿@page "/"
+@using Microsoft.Extensions.AI
+@rendermode InteractiveServer
+
+<PageTitle>Sequential Workflow with multiple agents</PageTitle>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12">
+            <h1>Sequential Workflow Demo</h1>
+            <p class="lead">This demo showcases a concurrent workflow with multiple AI agents working together. You can interact with each agent to control and monitor different aspects of the environment.</p>
+            <p class="lead">There are 2 agents configures to work concurrently on the problem statement to find an answer.</p>
+            <p class="lead">The agents are a Physicist and a Chemist, each providing their expertise to solve the problem.</p>
+        </div>
+    </div>
+    <div class="row mb-3">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header bg-info text-white">
+                    <strong>Try these example prompts:</strong>
+                </div>
+                <div class="card-body">
+                    <div class="d-flex flex-wrap gap-2">
+                        <button class="btn btn-outline-primary btn-sm" @onclick='() => SetPrompt("I Love visiting Portugal, Lisbon is great, but I prefer Porto!")'>
+                            I Love visiting Portugal, Lisbon is great, but I prefer Porto!
+                        </button>
+                        <button class="btn btn-outline-primary btn-sm" @onclick='() => SetPrompt("Microsoft Agent Framework is really cool, and simple and easy to learn")'>
+                            Microsoft Agent Framework is really cool, and simple and easy to learn
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header bg-primary text-white">
+                    <strong>💬 Chat with Agent</strong>
+                </div>
+                <div class="card-body">
+                    <div class="chat-container mb-3" style="height: 400px; overflow-y: auto; border: 1px solid #dee2e6; border-radius: 0.25rem; padding: 1rem; background-color: #f8f9fa;">
+                        @if (chatMessages.Any())
+                        {
+                            @foreach (var message in chatMessages)
+                            {
+                                <div class="mb-3 @(message.IsUser ? "text-end" : "text-start")">
+                                    <div class="d-inline-block @(message.IsUser ? "bg-primary text-white" : "bg-white") p-2 rounded" style="max-width: 70%; @(message.IsUser ? "" : "border: 1px solid #dee2e6;")">
+                                        <div class="small fw-bold mb-1">@(message.IsUser ? "You" : "🤖 Agents")</div>
+                                        <div><p>@((MarkupString)message.Text)</p></div>
+                                        <div class="small text-muted mt-1">@message.Timestamp.ToString("HH:mm:ss")</div>
+                                    </div>
+                                </div>
+                            }
+                        }
+                        else
+                        {
+                            <p class="text-muted text-center">Start a conversation by typing a message below...</p>
+                        }
+                        <div @ref="chatEndRef"></div>
+                    </div>
+
+                    <EditForm Model="@userInput" OnValidSubmit="HandleValidSubmit" FormName="WorkflowForm">
+                        <div class="input-group">
+                            <InputTextArea @bind-Value="userInput.Message"
+                                           class="form-control"
+                                           placeholder="Type your message here... (Ctrl+Enter to send)"
+                                           Rows="2"
+                                           disabled="@isLoading" />
+                            <button type="submit" class="btn btn-primary" disabled="@isLoading">
+                                @if (isLoading)
+                                {
+                                    <span class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>
+                                    <span>Sending...</span>
+                                }
+                                else
+                                {
+                                    <span>Send</span>
+                                }
+                            </button>
+                        </div>
+                    </EditForm>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<style>
+    .chat-container {
+        scroll-behavior: smooth;
+    }
+</style>
+
+@code {
+    private class UserInputModel
+    {
+        public string Message { get; set; } = string.Empty;
+    }
+
+    private class ChatMessage
+    {
+        public string Text { get; set; } = string.Empty;
+        public bool IsUser { get; set; }
+        public DateTime Timestamp { get; set; }
+    }
+
+    private UserInputModel userInput = new();
+    private List<ChatMessage> chatMessages = new();
+    private bool isLoading = false;
+    private ElementReference chatEndRef;
+
+    [Inject]
+    private WorkflowSequentialDemo.Web.Components.Contollers.WorkflowController workflowController { get; set; } = default!;
+
+    [Inject]
+    private IJSRuntime JSRuntime { get; set; } = default!;
+
+    private void SetPrompt(string prompt)
+    {
+        userInput.Message = prompt;
+    }
+
+    private async Task HandleValidSubmit()
+    {
+        await SubmitPromptAsync(userInput.Message);
+    }
+
+    private async Task SubmitPromptAsync(string prompt)
+    {
+        if (string.IsNullOrWhiteSpace(prompt)) return;
+
+        isLoading = true;
+
+        // Add user message to chat
+        chatMessages.Add(new ChatMessage
+        {
+            Text = prompt,
+            IsUser = true,
+            Timestamp = DateTime.Now
+        });
+
+        userInput.Message = string.Empty;
+        StateHasChanged();
+
+        try
+        {
+            // Get response from agent
+            var response = await workflowController.AskWorkflowQuestionAsync(prompt);
+
+            // Add agent response to chat
+            chatMessages.Add(new ChatMessage
+            {
+                Text = response,
+                IsUser = false,
+                Timestamp = DateTime.Now
+            });
+        }
+        catch (Exception ex)
+        {
+            chatMessages.Add(new ChatMessage
+            {
+                Text = $"Error: {ex.Message}",
+                IsUser = false,
+                Timestamp = DateTime.Now
+            });
+        }
+        finally
+        {
+            isLoading = false;
+            StateHasChanged();
+
+            // Scroll to bottom of chat
+            await Task.Delay(100);
+            try
+            {
+                await JSRuntime.InvokeVoidAsync("eval", "document.querySelector('.chat-container').scrollTop = document.querySelector('.chat-container').scrollHeight");
+            }
+            catch
+            {
+                // Ignore JS errors
+            }
+        }
+    }
+}

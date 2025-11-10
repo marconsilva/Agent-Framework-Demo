@@ -16,6 +16,8 @@
     <ProjectReference Include="..\..\Demo001_JokerAgentDemo\Aspire\JokerAgentDemo.Web\JokerAgentDemo.Web.csproj" />
     <ProjectReference Include="..\..\Demo002_LightPluginDemo\Aspire\LightPluginDemo.Web\LightPluginDemo.Web.csproj" />
     <ProjectReference Include="..\..\Demo003_HumanInTheLoopDemo\Aspire\HumanInTheLoopDemo.Web\HumanInTheLoopDemo.Web.csproj" />
+    <ProjectReference Include="..\..\Demo006_WorkflowSequentialDemo\Aspire\WorkflowSequentialDemo.Web\WorkflowSequentialDemo.Web.csproj" />
+    <ProjectReference Include="..\..\Demo007_WorkflowConcurrentDemo\Aspire\WorkflowConcurrentDemo.Web\WorkflowConcurrentDemo.Web.csproj" />
   </ItemGroup>
 
   <ItemGroup>
