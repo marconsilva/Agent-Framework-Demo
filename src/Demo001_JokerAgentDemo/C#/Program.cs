@@ -1,6 +1,5 @@
 ﻿using System.ClientModel;
 using Microsoft.Agents.AI;
-using DotNetEnv;
 using Azure.AI.OpenAI;
 using System;
 using Azure.Identity;

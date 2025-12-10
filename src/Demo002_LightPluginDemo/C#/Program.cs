@@ -8,8 +8,11 @@ using OpenAI.Chat;
 using Azure.Identity;
 using Microsoft.Extensions.Configuration;
 
+
 // Load user secrets from the project
-var config = new ConfigurationBuilder().Build();
+var config = new ConfigurationBuilder()
+.AddUserSecrets<Program>()
+.Build();
 
 // Populate values from your OpenAI deployment
 var modelId = config["AzureOpenAI:ModelId"] ?? "gpt-4o-demo";

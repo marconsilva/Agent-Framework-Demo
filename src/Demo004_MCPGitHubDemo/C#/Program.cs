@@ -9,7 +9,9 @@ using Azure.Identity;
 using Microsoft.Extensions.Configuration;
 
 // Load user secrets from the project
-var config = new ConfigurationBuilder().Build();
+var config = new ConfigurationBuilder()
+.AddUserSecrets<Program>()
+.Build();
 
 // Populate values from your OpenAI deployment
 var modelId = config["AzureOpenAI:ModelId"] ?? "gpt-4o-demo";
@@ -38,6 +40,13 @@ AIAgent agent = new AzureOpenAIClient(
      .CreateAIAgent(
         instructions: "You answer questions related to GitHub repositories only.",
         tools: [.. mcpTools.Cast<AITool>()]);
+
+Console.WriteLine("Initialized GitHub MCP Agent.");
+Console.WriteLine("Tools available:");
+foreach (var tool in mcpTools)
+{
+    Console.WriteLine($"\t- {tool.Name}: {tool.Description}");
+}   
 
 // Invoke the agent and output the text result.
 Console.WriteLine("GitHub MCP Agent Demo. Type a message and press Enter to send. Press Enter on an empty line to exit.\n");
